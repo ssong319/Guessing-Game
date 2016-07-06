@@ -17,6 +17,8 @@ while guess is not computer_number:
     elif guess < computer_number:
         print "Your guess is too low, try again."
         guess = int(raw_input("What's your guess? "))
-    else:
-        print "Congratulations! You are right."
-    break
+
+   
+print "Congratulations! You are right."
+        
+    
