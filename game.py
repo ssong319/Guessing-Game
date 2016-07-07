@@ -7,6 +7,7 @@ print "Try to guess my number."
 
 # get their guess, store it in a guess var, generate comp answer
 def game():
+    count = 0
     while True:
         try:
             guess = int(raw_input("What's your guess? "))
@@ -20,15 +21,18 @@ def game():
     while guess is not computer_number:
         if guess > computer_number and guess < 100:
             print "Your guess is too high, try again."
+            count += 1
             guess = int(raw_input("What's your guess? "))
         elif guess < computer_number and guess > 1:
             print "Your guess is too low, try again."
+            count += 1
             guess = int(raw_input("What's your guess? "))
         elif guess > 100 or guess < 1:
             print "Please enter a number between 1 and 100"
             guess = int(raw_input("What is your new guess? "))
        
     print "Congratulations! You are right."
+    print "You guessed it in %d guesses" % (count)
     new_game()
 
 def new_game():
@@ -36,20 +40,13 @@ def new_game():
     play_again = play_again.upper()
 
     if play_again == "Y":
+        print "Thanks for playing again. "
         game()
     elif play_again == "N": 
         print "Thanks for playing"
     else: 
         print "Not a valid input"
         new_game()
-
-    """
-            try:
-                play_again = raw_input("Enter 'Y' for yes or 'N' for no: ")
-                play_again = play_again.upper()
-            except play_again is not 'Y' or 'N':
-                print "Oops! That is not a valid entry. Try again... "
-                """
        
 game()
 
