@@ -6,19 +6,52 @@ print "Hello %s, I'm thinking of a number between 1 and 100" % (name)
 print "Try to guess my number."
 
 # get their guess, store it in a guess var, generate comp answer
-guess = int(raw_input("What's your guess? "))
-computer_number = random.randint(1,100)
+def game():
+    while True:
+        try:
+            guess = int(raw_input("What's your guess? "))
+            break
+        except ValueError:
+            print "Oops! That is not a valid number. Try again... "
 
-# while guess is incorrect tell them to retry and get reguess
-while guess is not computer_number:
-    if guess > computer_number:
-        print "Your guess is too high, try again."
-        guess = int(raw_input("What's your guess? "))
-    elif guess < computer_number:
-        print "Your guess is too low, try again."
-        guess = int(raw_input("What's your guess? "))
+    computer_number = random.randint(1,100)
 
-   
-print "Congratulations! You are right."
+    # while guess is incorrect tell them to retry and get reguess
+    while guess is not computer_number:
+        if guess > computer_number and guess < 100:
+            print "Your guess is too high, try again."
+            guess = int(raw_input("What's your guess? "))
+        elif guess < computer_number and guess > 1:
+            print "Your guess is too low, try again."
+            guess = int(raw_input("What's your guess? "))
+        elif guess > 100 or guess < 1:
+            print "Please enter a number between 1 and 100"
+            guess = int(raw_input("What is your new guess? "))
+       
+    print "Congratulations! You are right."
+    new_game()
+
+def new_game():
+    play_again = raw_input("Would you like to play again? Enter 'Y' for yes or 'N' for no: ")
+    play_again = play_again.upper()
+
+    if play_again == "Y":
+        game()
+    elif play_again == "N": 
+        print "Thanks for playing"
+    else: 
+        print "Not a valid input"
+        new_game()
+
+    """
+            try:
+                play_again = raw_input("Enter 'Y' for yes or 'N' for no: ")
+                play_again = play_again.upper()
+            except play_again is not 'Y' or 'N':
+                print "Oops! That is not a valid entry. Try again... "
+                """
+       
+game()
+
         
     
